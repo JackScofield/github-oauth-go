@@ -4,11 +4,19 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/joho/godotenv"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
 )
+
+func init() {
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatal("Error loading .env")
+	}
+}
 
 func loggedinHandler(w http.ResponseWriter, r *http.Request, githubData string) {
 	if githubData == "" {
